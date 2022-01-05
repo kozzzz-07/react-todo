@@ -1,7 +1,7 @@
 import { VFC } from "react";
 import { Routes, Route } from "react-router-dom";
 import { Login } from "../components/login/Login";
-import { Todo } from "../components/todo/Todo";
+import { Todo } from "../components/todo/Todo.page";
 import { History } from "../components/history/History";
 import App from "../App";
 
