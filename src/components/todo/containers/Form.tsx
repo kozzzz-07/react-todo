@@ -1,5 +1,6 @@
 import { FormEvent, useCallback, VFC } from "react";
 import { useRecoilState } from "recoil";
+import styled from "styled-components";
 import { useTaskId } from "../hooks/useTaskId";
 import { Task } from "../models/todo";
 import { InputArea } from "../presenters/InputArea";
@@ -42,5 +43,16 @@ export const Form: VFC = () => {
     [id, todo]
   );
 
-  return <InputArea handleSubmit={handleSubmit} />;
+  return (
+    <SForm onSubmit={handleSubmit}>
+      <InputArea />
+    </SForm>
+  );
 };
+
+const SForm = styled.form`
+  display: flex;
+  & :not(:first-child) {
+    margin-left: 8px;
+  }
+`;
