@@ -6,6 +6,7 @@ import { Item } from "../presenters/Item";
 import { todoState } from "../store/todoState";
 
 export const List: VFC = () => {
+  console.log("List Component");
   const [todo, setTodo] = useRecoilState(todoState);
 
   const onRemove = useCallback(

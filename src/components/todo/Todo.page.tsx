@@ -1,12 +1,15 @@
 import styled from "styled-components";
-import { Container } from "./containers/Container";
+import { Form } from "./containers/Form";
+import { List } from "./containers/List";
 
 export const Todo = () => {
   console.log("Todo Component");
 
   return (
     <Page>
-      <Container />
+      <Form />
+      <Hr />
+      <List />
     </Page>
   );
 };
@@ -18,4 +21,8 @@ const Page = styled.div`
 
   height: 100%;
   padding: 32px;
+`;
+
+const Hr = styled.hr`
+  width: 100%;
 `;
