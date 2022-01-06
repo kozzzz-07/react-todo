@@ -3,13 +3,12 @@ import { FormEvent } from "react";
 import styled from "styled-components";
 
 import { Task, TaskId } from "./models/todo";
+import { Item } from "./presenters/Item";
 
 export const Todo = () => {
   const [task, setTask] = useState("");
   const [id, setId] = useState(0);
   const [todo, setTodo] = useState<Task[]>([]);
-
-  console.log(todo);
 
   const handleSubmit = useCallback(
     (e: FormEvent<HTMLFormElement>) => {
@@ -75,18 +74,12 @@ export const Todo = () => {
       <Hr />
       <List>
         {todo.map((task) => (
-          <Item key={task.id}>
-            <input
-              id={`${task.id}`}
-              type="checkbox"
-              onChange={() => toggleCheckBox(task.id)}
-              checked={task.isDone}
-            />
-            <label htmlFor={`${task.id}`} className="task">
-              {task.text}
-            </label>
-            <button onClick={() => onRemove(task.id)}>削除</button>
-          </Item>
+          <Item
+            key={task.id}
+            task={task}
+            toggleCheckBox={toggleCheckBox}
+            onRemove={onRemove}
+          />
         ))}
       </List>
     </Container>
@@ -116,32 +109,4 @@ const Hr = styled.hr`
 const List = styled.ul`
   padding: 0;
   margin: 0;
-`;
-
-const Item = styled.li`
-  display: flex;
-  padding: 8px;
-  width: 500px;
-
-  & .text {
-    max-width: 400px;
-  }
-
-  & :not(:first-child) {
-    margin-left: 8px;
-  }
-
-  & :last-child {
-    margin-left: auto;
-  }
-
-  & :checked ~ .task {
-    text-decoration: line-through;
-    color: gray;
-  }
-
-  & input[type="checkbox"] {
-    width: 16px;
-    height: 16px;
-  }
 `;
