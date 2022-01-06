@@ -1,5 +1,6 @@
-import { FormEvent, useCallback, useState, VFC } from "react";
+import { FormEvent, useCallback, VFC } from "react";
 import { useRecoilState } from "recoil";
+import { useTaskId } from "../hooks/useTaskId";
 import { Task } from "../models/todo";
 import { InputArea } from "../presenters/InputArea";
 import { todoState } from "../store/todoState";
@@ -7,7 +8,7 @@ import { todoState } from "../store/todoState";
 export const Form: VFC = () => {
   console.log("Form Component");
 
-  const [id, setId] = useState(0);
+  const { id, increment } = useTaskId();
   const [todo, setTodo] = useRecoilState(todoState);
 
   const handleSubmit = useCallback(
@@ -20,14 +21,15 @@ export const Form: VFC = () => {
         }
       ).task.value;
 
-      const nextId = id + 1;
-      setId(nextId);
+      increment();
 
       const task: Task = {
-        id: nextId,
+        id,
         isDone: false,
         text: value,
       };
+
+      console.log(task);
 
       setTodo([...todo, task]);
 
