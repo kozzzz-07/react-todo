@@ -1,4 +1,4 @@
-import { ChangeEvent, useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import { FormEvent } from "react";
 import styled from "styled-components";
 
@@ -9,7 +9,6 @@ import { Item } from "./presenters/Item";
 export const Todo = () => {
   console.log("Todo Component");
 
-  const [task, setTask] = useState("");
   const [id, setId] = useState(0);
   const [todo, setTodo] = useState<Task[]>([]);
 
@@ -39,7 +38,6 @@ export const Todo = () => {
           task: { value: string };
         }
       ).task.value = "";
-      setTask("");
     },
     [id, todo]
   );
@@ -65,17 +63,9 @@ export const Todo = () => {
     [todo]
   );
 
-  const onChangeTask = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    setTask(e.target.value);
-  }, []);
-
   return (
     <Container>
-      <InputArea
-        handleSubmit={handleSubmit}
-        onChangeTask={onChangeTask}
-        task={task}
-      />
+      <InputArea handleSubmit={handleSubmit} />
       <Hr />
       <List>
         {todo.map((task) => (
@@ -98,13 +88,6 @@ const Container = styled.div`
 
   height: 100%;
   padding: 32px;
-`;
-
-const Form = styled.form`
-  display: flex;
-  & :not(:first-child) {
-    margin-left: 8px;
-  }
 `;
 
 const Hr = styled.hr`
