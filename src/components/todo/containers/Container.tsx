@@ -1,14 +1,16 @@
 import { VFC, useState, useCallback, FormEvent } from "react";
+import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import { Task, TaskId } from "../models/todo";
 import { InputArea } from "../presenters/InputArea";
 import { Item } from "../presenters/Item";
+import { todoState } from "../store/todoState";
 
 export const Container: VFC = () => {
   console.log("Container Component");
 
   const [id, setId] = useState(0);
-  const [todo, setTodo] = useState<Task[]>([]);
+  const [todo, setTodo] = useRecoilState(todoState);
 
   const handleSubmit = useCallback(
     (e: FormEvent<HTMLFormElement>) => {

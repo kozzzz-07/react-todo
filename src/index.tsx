@@ -6,11 +6,14 @@ import reportWebVitals from "./reportWebVitals";
 import "./styles/reset.css";
 import { BrowserRouter } from "react-router-dom";
 import { Router as AppRouter } from "./routes/Router";
+import { RecoilRoot } from "recoil";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <AppRouter />
+      <RecoilRoot>
+        <AppRouter />
+      </RecoilRoot>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
