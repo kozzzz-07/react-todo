@@ -3,9 +3,12 @@ import { FormEvent } from "react";
 import styled from "styled-components";
 
 import { Task, TaskId } from "./models/todo";
+import { InputArea } from "./presenters/InputArea";
 import { Item } from "./presenters/Item";
 
 export const Todo = () => {
+  console.log("Todo Component");
+
   const [task, setTask] = useState("");
   const [id, setId] = useState(0);
   const [todo, setTodo] = useState<Task[]>([]);
@@ -36,6 +39,7 @@ export const Todo = () => {
           task: { value: string };
         }
       ).task.value = "";
+      setTask("");
     },
     [id, todo]
   );
@@ -67,10 +71,11 @@ export const Todo = () => {
 
   return (
     <Container>
-      <Form onSubmit={handleSubmit}>
-        <input type="text" name="task" onChange={onChangeTask} />
-        <button disabled={task === ""}>追加</button>
-      </Form>
+      <InputArea
+        handleSubmit={handleSubmit}
+        onChangeTask={onChangeTask}
+        task={task}
+      />
       <Hr />
       <List>
         {todo.map((task) => (

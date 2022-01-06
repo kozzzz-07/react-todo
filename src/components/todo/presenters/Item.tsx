@@ -14,7 +14,7 @@ export const Item: VFC<Props> = memo((props) => {
   const { task, toggleCheckBox, onRemove } = props;
 
   return (
-    <SItem>
+    <Li>
       <input
         id={`${task.id}`}
         type="checkbox"
@@ -25,11 +25,11 @@ export const Item: VFC<Props> = memo((props) => {
         {task.text}
       </label>
       <button onClick={() => onRemove(task.id)}>削除</button>
-    </SItem>
+    </Li>
   );
 });
 
-const SItem = styled.li`
+const Li = styled.li`
   display: flex;
   padding: 8px;
   width: 500px;
