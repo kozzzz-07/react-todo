@@ -1,18 +1,15 @@
 import { VFC } from "react";
-import { Routes, Route } from "react-router-dom";
-import { Login } from "../components/login/Login";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { Todo } from "../components/todo/Todo.page";
-import { History } from "../components/history/History";
 import App from "../App";
 
 export const Router: VFC = () => {
   return (
     <Routes>
-      <Route path="/login" element={<Login />} />
       <Route path="/" element={<App />}>
-        <Route path="/todo" element={<Todo />} />
-        <Route path="/history" element={<History />} />
+        <Route index element={<Todo />} />
       </Route>
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
 };

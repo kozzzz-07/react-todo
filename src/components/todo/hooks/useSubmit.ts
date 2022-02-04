@@ -28,7 +28,6 @@ export const useSubmit = () => {
 
       setTodo([...todo, task]);
 
-      // この辺が辛い
       (
         e.target as typeof e.target & {
           task: { value: string };
